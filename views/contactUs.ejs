@@ -1,0 +1,35 @@
+<%# this is an ejs comment %>
+<!-- 👇 to include partials from another view we need to give a relative path form this current file -->
+<!-- The EJS TAG is used for displaying / rendering HTML in browser -->
+<%- include('./partials/header.ejs') %>
+<h1> Contact Us</h1>
+  <form action="/thank_you">
+    <div>
+      <label for="fullName">What is your full name?</label><br/>
+      <input type="text" id="fullName" name="fullName" />
+    </div>
+    <div>
+      <label for="favouriteColor">What is your fav color?</label>
+      <input type="color" id="favouriteColor" name="favouriteColor" />
+    </div>
+    <div>
+      <label for="favouriteDay">What is your favourite day of the week?</label><br/>
+      <% 
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+        for (let option of days) {
+      %>
+      <label for="<%= option %>"> <%= option %> </label>
+      <input type="radio" name="favouriteDay" id="<%= option %>" value="<%= option %>" />
+      <br/>
+      <% } %>
+    </div>
+    <div>
+      <label for="message">What's on your mind?</label><br/>
+      <textarea id='message' name='message' cols='60' rows='5'></textarea>
+    </div>
+    <input type='submit' value='send'/>
+  </form>
+
+
+<%- include('./partials/footer.ejs') %>
+
