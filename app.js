@@ -62,10 +62,11 @@ App.get('/thank_you', (request, response) => {
   // console.log('params', params);
   // The object properties of params are named based on the 'NAME' attributes for the inputs of the form.
   // aka ==> fullName && favouriteColor && favouriteDay && message
-  const fullName = params.fullName;
-  const favouriteColor = params.favouriteColor;
-  const favouriteDay = params.favouriteDay;
-  const message = params.message;
+  // const fullName = params.fullName;
+  // const favouriteColor = params.favouriteColor;
+  // const favouriteDay = params.favouriteDay;
+  // const message = params.message;
+  const { fullName, favouriteColor, favouriteDay, message } = params
   response.render('thankYou', {
     fullName,
     favouriteDay,
