@@ -21,6 +21,29 @@ App.use(Logger('dev'));
 //   next();
 // })
 
+// -----------
+// NOTE ABOUT ROUTES
+// -----------
+// URL(Uniform Resource Locator)
+// URL http://127.0.0.1:4545/hello_world
+//     scheme | host   |port| path
+/**
+ * "Scheme" identifies the protocol being used
+ * to communicate. Could be HTTP, HTTPS,SSH, FTP,TCP,WS etc
+ * The "HOST" identifies the domain or IP that is hosting the server
+ * The "PORT" specifies the port that is being used  by the web app on server
+ * The 'Path' identifies the location of a resource on the server.
+ * 
+ * The following method creates a "route"
+ * the name od the method (i.e.'get' ) corresponds to an HTTP VERB (get,post, delete, patch, put, etc)
+ * The first argument to the method is the 'path' of a URL
+ * The second argument is a callback that is triggered when a client makes
+ * a request tothat route
+ * using the correct/matching HTTP VERB
+ * So in this case, when a client makes a GET request to '/hello_world'
+ * the Callback will execute
+ */
+
 App.get('/hello_world', (request, response) => {
   response.send("Hello, World! AGAIN!");
 });
@@ -34,8 +57,29 @@ App.get('/contact_us', (request, response) => {
   response.render('contactUs');
 })
 
+App.get('/thank_you', (request, response) => {
+  const params = request.query;
+  // console.log('params', params);
+  // The object properties of params are named based on the 'NAME' attributes for the inputs of the form.
+  // aka ==> fullName && favouriteColor && favouriteDay && message
+  const fullName = params.fullName;
+  const favouriteColor = params.favouriteColor;
+  const favouriteDay = params.favouriteDay;
+  const message = params.message;
+  response.render('thankYou', {
+    fullName,
+    favouriteDay,
+    favouriteColor,
+    message,
+  });
+})
+
 const PORT=4545;
 const ADDRESS='127.0.0.1';
 App.listen(PORT, ADDRESS, () => {
   console.log(`Server is listening on port http://${ADDRESS}:${PORT}`);
 })
+
+
+
+// to start server run NPM RUN START
